@@ -51,6 +51,16 @@ dependencies {
     // 'maven.modrinth:jei:4.16.1.1000' << jei = project name, 4.16.1.1000 = file version
     // Full documentation: https://docs.modrinth.com/docs/tutorials/maven/
 
+    // Macaw's Furniture - ARR, referenced from local jar (not bundled)
+    // Place mcw-furniture-*.jar in the libs/ directory before building
+    // Source is closed; jar is compile + dev-runtime only and must NOT be redistributed
+    def macawJars = fileTree(dir: 'libs', include: 'mcw-furniture-*.jar')
+    if (!macawJars.isEmpty()) {
+        implementation rfg.deobf(macawJars)
+    } else {
+        throw new GradleException('Missing required dependency: place mcw-furniture-*.jar in the libs/ directory')
+    }
+
     // Common dependency types (configuration):
     // implementation = dependency available at both compile time and runtime
     // runtimeOnly = runtime dependency
