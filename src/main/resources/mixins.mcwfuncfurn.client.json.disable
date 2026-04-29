@@ -1,0 +1,11 @@
+{
+	"package": "${mixin_package}.client",
+	"required": false,
+	"refmap": "${mixin_refmap}",
+	"target": "@env(CLIENT)",
+	"minVersion": "0.8.5",
+	"compatibilityLevel": "JAVA_8",
+	"client": ["RenderGlobalMixin"]
+}
+- I disabled this, its probably shit, but I guess I'll leave it here for now.
+- The counterpart to this is Mixins>Client>RenderGlobalMixin
