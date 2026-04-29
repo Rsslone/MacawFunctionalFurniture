@@ -1,0 +1,19 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "mcwfuncfurn:furniture_filler"
+    },
+    "variants": {
+        "master_offset": {
+            "north":      {},
+            "south":      {},
+            "east":       {},
+            "west":       {},
+            "down":       {},
+            "down_north": {},
+            "down_south": {},
+            "down_east":  {},
+            "down_west":  {}
+        }
+    }
+}
