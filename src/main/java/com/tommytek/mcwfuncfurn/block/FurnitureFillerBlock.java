@@ -188,6 +188,22 @@ public class FurnitureFillerBlock extends Block {
         return new AxisAlignedBB(minX, 0.0, minZ, maxX, 1.0, maxZ);
     }
 
+    /**
+     * Hover-outline highlight: delegate to the master block so that the same
+     * full-model AABB is drawn regardless of which cell (master or filler) the
+     * cursor is aimed at.
+     */
+    @Override
+    @SuppressWarnings("deprecation")
+    public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World world, BlockPos pos) {
+        BlockPos master = findMaster(world, pos);
+        if (master != null) {
+            IBlockState masterState = world.getBlockState(master);
+            return masterState.getSelectedBoundingBox(world, master);
+        }
+        return super.getSelectedBoundingBox(state, world, pos);
+    }
+
     // ────────────────────────────────────────────────────────────────────
     // Item drop behaviour: filler is invisible / unobtainable.  The master
     // owns the dresser ItemBlock; filler.removedByPlayer routes drops there.
