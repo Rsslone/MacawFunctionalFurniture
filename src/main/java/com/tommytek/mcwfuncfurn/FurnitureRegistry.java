@@ -87,55 +87,72 @@ public final class FurnitureRegistry {
 
     private static final Map<String, Integer> ROWS = new HashMap<>();
     private static final Map<String, Shape> SHAPES = new HashMap<>();
+    private static final Map<String, String> NAMES = new HashMap<>();
 
     static {
         // ── pult (bookcase / display) ──────────────────────────────────────
         // base "pult" omitted — purely decorative, no storage
-        put(3, Shape.NONE, "pult_1", "pult_2");
-        put(2, Shape.NONE, "pult_3");
-        put(1, Shape.NONE, "pult_4");
+        put(3, Shape.NONE, "Cupboard Counter",       "pult_1", "pult_2");
+        put(2, Shape.NONE, "Double Drawer Counter",  "pult_3");
+        put(1, Shape.NONE, "Drawer Counter",         "pult_4");
 
         // ── boxes ──────────────────────────────────────────────────────────
-        put(3, Shape.NONE, "box", "box_2");
+        put(3, Shape.NONE, "Kitchen Cabinet",        "box", "box_2");
 
         // ── nightstands ────────────────────────────────────────────────────
-        put(1, Shape.NONE, "nightstand");
-        put(2, Shape.NONE, "nightstand_2", "nightstand_3");
-        put(3, Shape.NONE, "nightstand_4", "nightstand_5", "nightstand_6",
-              "nightstand_7", "nightstand_8");
+        put(1, Shape.NONE, "Drawer Nightstand",      "nightstand");
+        put(2, Shape.NONE, "Double Drawer Nightstand", "nightstand_2");
+        put(2, Shape.NONE, "Bookcase Nightstand",    "nightstand_3");
+        put(3, Shape.NONE, "Double Kitchen Cabinet", "nightstand_4");
+        put(3, Shape.NONE, "Drawer Cupboard",        "nightstand_5");
+        put(3, Shape.NONE, "Kitchen Cabinet",        "nightstand_6");
+        put(3, Shape.NONE, "Glass Cabinet",          "nightstand_7", "nightstand_8");
 
         // ── dressers (FurnitureDresser: 2-wide along the X/Z perpendicular axis) ──
-        put(6, Shape.DRESSER, "dresser", "dresser_box",
-              "dresser_3", "dresser_4", "dresser_5", "dresser_6",
-              "dresser_7", "dresser_8", "dresser_9", "dresser_10", "dresser_11");
-        put(4, Shape.DRESSER, "dresser_12");
-        put(2, Shape.DRESSER, "dresser_13", "dresser_17", "dresser_18");
-        put(3, Shape.DRESSER, "dresser_15", "dresser_16");
+        put(6, Shape.DRESSER, "Classic Dresser",         "dresser");
+        put(6, Shape.DRESSER, "Cupboard Dresser",        "dresser_box");
+        put(6, Shape.DRESSER, "Double Drawer Dresser",   "dresser_3");
+        put(6, Shape.DRESSER, "Triple Drawer Dresser",   "dresser_4", "dresser_5");
+        put(6, Shape.DRESSER, "Bookcase Dresser",        "dresser_6", "dresser_11");
+        put(6, Shape.DRESSER, "Complex Dresser",         "dresser_7", "dresser_8");
+        put(6, Shape.DRESSER, "Bookshelf Dresser",       "dresser_9", "dresser_10");
+        put(4, Shape.DRESSER, "Complex Shelving Unit",   "dresser_12");
+        put(2, Shape.DRESSER, "Drawer Shelving Unit",    "dresser_13");
+        put(3, Shape.DRESSER, "Sapling Cabinet Dresser", "dresser_15", "dresser_16");
+        put(2, Shape.DRESSER, "Sapling Drawer Dresser",  "dresser_17", "dresser_18");
         // dresser_14 omitted
 
         // ── desks (also FurnitureDresser shape) ───────────────────────────
-        put(2, Shape.DRESSER, "desk", "desk_6");
-        put(3, Shape.DRESSER, "desk_2", "desk_5");
+        put(2, Shape.DRESSER, "Drawer Desk",   "desk", "desk_6");
+        put(3, Shape.DRESSER, "Cupboard Desk", "desk_2", "desk_5");
 
         // ── cupboards (FurnitureCupboard: 2-tall) ─────────────────────────
-        put(6, Shape.CUPBOARD, "cupboard", "cupboard_2", "cupboard_4", "cupboard_5",
-              "cupboard_6", "cupboard_7", "cupboard_9");
-        put(4, Shape.CUPBOARD, "cupboard_3", "cupboard_8");
+        put(6, Shape.CUPBOARD, "Cupboard",         "cupboard", "cupboard_6");
+        put(6, Shape.CUPBOARD, "Modern Cupboard",  "cupboard_2", "cupboard_7");
+        put(6, Shape.CUPBOARD, "Complex Cupboard", "cupboard_4", "cupboard_9");
+        put(6, Shape.CUPBOARD, "Double Cupboard",  "cupboard_5");
+        put(4, Shape.CUPBOARD, "Bookshelf",        "cupboard_3");
+        put(4, Shape.CUPBOARD, "Tall Bookshelf",   "cupboard_8");
 
         // ── wardrobes / cabinets (FurnitureWardrobe: 2-wide × 2-tall) ─────
-        put(6, Shape.WARDROBE, "furniture_1", "furniture_2", "furniture_3", "furniture_4",
-              "furniture_5", "furniture_6", "furniture_7", "furniture_8",
-              "furniture_9");
+        put(6, Shape.WARDROBE, "Wardrobe",         "furniture_1");
+        put(6, Shape.WARDROBE, "Modern Wardrobe",  "furniture_2");
+        put(6, Shape.WARDROBE, "Complex Wardrobe", "furniture_3", "furniture_9");
+        put(6, Shape.WARDROBE, "Display Wardrobe", "furniture_4", "furniture_8");
+        put(6, Shape.WARDROBE, "Shelf Wardrobe",   "furniture_5");
+        put(6, Shape.WARDROBE, "Cupboard Wardrobe","furniture_6");
+        put(6, Shape.WARDROBE, "Tall Bookshelf",   "furniture_7");
     }
 
     private FurnitureRegistry() {}
 
-    private static void put(int rows, Shape shape, String... baseNames) {
+    private static void put(int rows, Shape shape, String name, String... baseNames) {
         for (String base : baseNames) {
             for (String prefix : WOOD_PREFIXES) {
                 String path = prefix + base;
                 ROWS.put(path, rows);
                 SHAPES.put(path, shape);
+                NAMES.put(path, name);
             }
         }
     }
@@ -151,6 +168,12 @@ public final class FurnitureRegistry {
     public static int getRows(String blockPath) {
         Integer rows = ROWS.get(blockPath);
         return rows == null ? 0 : rows;
+    }
+
+    /** @return display name for the given path, or {@code "Furniture"} if not found. */
+    public static String getName(String blockPath) {
+        String name = NAMES.get(blockPath);
+        return name != null ? name : "Furniture";
     }
 
     /**

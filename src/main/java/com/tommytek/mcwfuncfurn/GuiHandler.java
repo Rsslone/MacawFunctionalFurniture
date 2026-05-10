@@ -23,12 +23,13 @@ public class GuiHandler implements IGuiHandler {
         ResourceLocation regName = world.getBlockState(pos).getBlock().getRegistryName();
         if (regName == null) return null;
 
-        int rows = FurnitureRegistry.getRows(regName.getPath());
+                int rows = FurnitureRegistry.getRows(regName.getPath());
         if (rows <= 0) return null;
 
+        String name = FurnitureRegistry.getName(regName.getPath());
         FurnitureInventoryData data = FurnitureInventoryData.get(world);
         ItemStackHandler handler = data.getOrCreate(pos, rows * 9);
-        return new FurnitureContainer(player.inventory, handler, pos, rows);
+        return new FurnitureContainer(player.inventory, handler, pos, rows, name);
     }
 
     @Override

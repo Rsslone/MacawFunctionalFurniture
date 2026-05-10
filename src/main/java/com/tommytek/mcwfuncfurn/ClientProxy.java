@@ -30,7 +30,8 @@ public class ClientProxy extends CommonProxy {
         int rows = FurnitureRegistry.getRows(regName.getPath());
         if (rows <= 0) return null;
 
+        String name = FurnitureRegistry.getName(regName.getPath());
         ItemStackHandler handler = new ItemStackHandler(rows * 9);
-        return new FurnitureGui(new FurnitureContainer(player.inventory, handler, pos, rows));
+        return new FurnitureGui(new FurnitureContainer(player.inventory, handler, pos, rows, name));
     }
 }

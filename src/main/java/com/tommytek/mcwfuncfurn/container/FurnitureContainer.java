@@ -24,12 +24,14 @@ public class FurnitureContainer extends Container {
     private final BlockPos blockPos;
     private final int rows;
     private final int furnitureSlots;
+    private final String containerName;
 
     public FurnitureContainer(InventoryPlayer playerInv, ItemStackHandler inv,
-                               BlockPos blockPos, int rows) {
-        this.blockPos      = blockPos;
-        this.rows          = rows;
+                               BlockPos blockPos, int rows, String containerName) {
+        this.blockPos       = blockPos;
+        this.rows           = rows;
         this.furnitureSlots = rows * 9;
+        this.containerName  = containerName;
 
         // ── Furniture slots ───────────────────────────────────────────────
         for (int row = 0; row < rows; row++) {
@@ -62,6 +64,10 @@ public class FurnitureContainer extends Container {
 
     public int getRows() {
         return rows;
+    }
+
+    public String getContainerName() {
+        return containerName;
     }
 
     @Override

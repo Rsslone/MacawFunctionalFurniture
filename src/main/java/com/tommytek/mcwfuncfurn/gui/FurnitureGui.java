@@ -20,11 +20,21 @@ public class FurnitureGui extends GuiContainer {
         new ResourceLocation("textures/gui/container/generic_54.png");
 
     private final int rows;
+    private final String containerName;
 
     public FurnitureGui(FurnitureContainer container) {
         super(container);
-        this.rows = container.getRows();
+        this.rows          = container.getRows();
+        this.containerName = container.getContainerName();
         this.ySize = 114 + rows * 18;
+    }
+
+    @Override
+    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
+        fontRenderer.drawString(containerName, 8, 6, 0x404040);
+        fontRenderer.drawString(
+            net.minecraft.client.resources.I18n.format("container.inventory"),
+            8, ySize - 96 + 2, 0x404040);
     }
 
     @Override
