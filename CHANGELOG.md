@@ -1,4 +1,8 @@
 # Changelog
+## [1.2.1] - 2026-05-11
+### Fixed
+- Fixed misconfiguration of mixin configs causing a harmless console error.
+
 ## [1.2.0] - 2026-05-09
 ### Fixed
 - Fixed furniture inventories not rendering tooltips.
