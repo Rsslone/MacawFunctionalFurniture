@@ -10,6 +10,6 @@ public class MixinLoader implements ILateMixinLoader {
 
     @Override
     public List<String> getMixinConfigs() {
-        return Arrays.asList("mixins.mcwfuncfurn.json", "mixins.mcwfuncfurn.client.json");
+        return Arrays.asList("mixins.mcwfuncfurn.json");
     }
 }
